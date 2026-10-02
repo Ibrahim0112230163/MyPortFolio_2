@@ -1,0 +1,131 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg: #0e0e0e;
+  --color-bg-soft: #151515;
+  --color-bg-card: #1b1b1b;
+  --color-line: #2a2a2a;
+  --color-fg: #f2f2f2;
+  --color-fg-soft: #a9a9a9;
+  --color-fg-mute: #9a9a9a;
+
+  --font-sans: var(--font-poppins), system-ui, sans-serif;
+}
+
+:root {
+  --nav-h: 80px;
+  color-scheme: dark;
+}
+
+html {
+  scroll-padding-top: var(--nav-h);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html:not(.anim-ready) {
+    scroll-behavior: smooth;
+  }
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-fg);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--color-fg);
+  color: var(--color-bg);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-fg);
+  outline-offset: 3px;
+}
+
+.js-anim [data-reveal],
+.js-anim [data-hero] {
+  visibility: hidden;
+}
+
+@layer components {
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    min-height: 50px;
+    padding: 0.8rem 2rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    border: 1px solid var(--color-fg);
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease;
+  }
+  .btn-solid {
+    background: var(--color-fg);
+    color: var(--color-bg);
+  }
+  .btn-solid:hover {
+    background: transparent;
+    color: var(--color-fg);
+  }
+  .btn-outline {
+    color: var(--color-fg);
+  }
+  .btn-outline:hover {
+    background: var(--color-fg);
+    color: var(--color-bg);
+  }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.9rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--color-fg-soft);
+  }
+  .eyebrow::before {
+    content: "";
+    width: 2.5rem;
+    height: 1px;
+    background: currentColor;
+  }
+
+  .backdrop-word {
+    font-weight: 800;
+    line-height: 0.8;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    color: transparent;
+    -webkit-text-stroke: 1px rgb(255 255 255 / 0.07);
+    white-space: nowrap;
+    user-select: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
+
+@keyframes scrollcue {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(200%); }
+}
+
+@keyframes caret {
+  50% { opacity: 0; }
+}
